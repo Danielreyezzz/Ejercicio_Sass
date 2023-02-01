@@ -1,0 +1,59 @@
+@import "variables";
+@import "funciones";
+
+
+@mixin tarjeta($fondo, $color: $white) {
+    background-color: $fondo;
+    border: 4px solid black;
+    box-shadow: $shadow;
+    padding: 4em;
+    border-radius: 10px;
+    font-size: $p;
+    color: $color;
+    text-align: center;
+    //Uso de una pequeña función que a su vez usa una operación
+    &:hover {
+      font-size: reduceSize($p);
+      transition: 0.5s;
+    }
+  }
+
+
+@mixin flexSpace(){
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+};
+
+
+@mixin flexCenter(){
+    display: flex;
+    justify-content: center;
+    align-items: center;
+};
+
+@mixin grid($columns, $gap){
+    display: grid;
+    grid-template-columns: $columns;
+    gap: $gap;
+}
+
+//He hecho este sencillo bucle para crear las clases color1 y color2
+//Estas clases tendran la propiedad de css color: con el color correspondiente del array de colores en las variables
+@mixin each($array){
+    @each $color in $array {
+        .color#{$i + 1} {
+          color: $color !important;
+        }
+        $i: +1;
+      }
+}
+
+//mixin para añadir paddin a las columnas o otros elementos
+//por defecto el valor $grande está a 0. Si le pasasemos un 1 el padding aumentaría más todavia
+@mixin columna($grande: 0){
+    padding: $padding;
+    @if $grande == 1{
+        padding: $padding + 1.5em;
+    }
+}

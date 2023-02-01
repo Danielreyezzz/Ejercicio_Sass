@@ -1,0 +1,92 @@
+@import "components/variables";
+@import "components/funciones";
+@import "components/mixin";
+
+//Anidación. Aunque se irá usando durante todo el ejercicio
+.header {
+  background-color: $white;
+  h1 {
+    font-size: $h1;
+    text-align: center;
+    padding: $padding;
+  }
+  div {
+    box-shadow: $shadow;
+  }
+  div nav {
+    @include flexSpace();
+  }
+  div nav a {
+    text-decoration: none;
+    color: $black;
+    font-size: $p;
+    padding: $padding;
+    &:hover {
+      color: $darkBlue;
+      font-weight: bold;
+      transition: 0.5s;
+    }
+  }
+}
+
+//Uso de un mixin para generar un display grid con los parametros que le pasemos
+.cajas {
+  @include grid(1fr 1fr, 4em);
+  margin: $margin;
+}
+
+//Uso de una pequeña función en los parametros de un mixin
+.tarjeta {
+  @include tarjeta($fondo: backgroundColor("primero"));
+}
+.tarjeta2 {
+  @include tarjeta($fondo: backgroundColor("segundo"), $color: $lightBlue);
+}
+
+.columnas {
+  @include flexCenter();
+  .columna {
+    //Uso de una función que calcula el tamaño porcentual de una columna pasandole por parametro el número de columnas que queremos
+    width: columnSize(3);
+    @include columna();
+    p {
+      text-align: center;
+      margin: $margin;
+    }
+  }
+}
+
+//He hecho este bucle mixin para poder pasarle por parametro otro array de colores si quisieramos crear clases con colores distintos
+@include each($colorText);
+
+
+footer {
+  @include flexSpace();
+  margin: 5em 0;
+}
+
+//Bucle para darle estilos de la clase parrafoFooter1 al 4
+//He incluido la condicion de que los pares sean de mayor tamaño, haciendo uso de una función previamente definida
+
+@for $i from 1 through 4 {
+  .parrafoFooter#{$i} {
+    @include flexCenter();
+    padding: $padding;
+    color: $white;
+    @if ($i % 2 == 0) {
+      background-color: backgroundColor("primero");
+      font-size: aumentarTamaño($p, 1em);
+      &:hover {
+        font-size: reduceSize($p);
+        transition: 0.5s;
+      }
+    } @else {
+      background-color: backgroundColor("segundo");
+      font-size: reduceSize($p);
+      &:hover {
+        font-size: aumentarTamaño($p, 1em);
+        transition: 0.5s;
+      }
+    }
+  }
+}

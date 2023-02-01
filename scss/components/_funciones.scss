@@ -1,0 +1,24 @@
+@function backgroundColor($name) {
+  @return map-get($map: $colorTarjetas, $key: $name);
+}
+
+@function reduceSize($parametro) {
+  @if $parametro > 2em {
+    @return $parametro - 1em;
+  } @else {
+    @return $parametro - 0.5em;
+  }
+}
+
+@function columnSize($num) {
+  @return $num * 100% / 12;
+};
+
+
+@function aumentarTamaño($parametro, $aumento){
+    @return $parametro + $aumento;
+}
+
+    
+
+

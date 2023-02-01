@@ -1,0 +1,27 @@
+//Paleta de colores
+$white: #F0EDEE;
+$black: #0A090C;
+$green: #07393c;
+$darkBlue: #2C666E;
+$lightBlue: #90ddf0;
+
+//Pequeño array asociativo de dos colores para usarlo luego
+$colorTarjetas: (
+    'primero': $green,
+    'segundo': $darkBlue
+);
+
+$i: 0;
+
+$colorText: (
+    $green,
+    $darkBlue
+);
+
+//Estilos
+$padding: 2em!default;
+$margin: 2em!default;
+$shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+$h1: 2.5em;
+$h2: 2em;
+$p: 1.4em;
